@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Servers Dashboard</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:#111;color:#fff;line-height:1.4}
+    header{text-align:center;padding:2rem 1rem 1rem}
+    header h1{font-size:2rem;margin-bottom:.5rem}
+    .player-info{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1rem;max-width:960px;margin:0 auto}
+    .avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+    .player-info .details{flex:1}
+    .player-info h2{font-size:1.5rem;margin-bottom:.25rem}
+    .player-info p{font-size:.9rem;opacity:.85}
+    .search-wrapper{max-width:320px;width:100%}
+    #search{width:100%;padding:.6rem .8rem;border-radius:6px;border:none;font-size:1rem}
+    .wrapper{display:flex;flex-direction:column;gap:1rem;padding:0 1rem 2rem;align-items:center}
+    .card{position:relative;width:100%;max-width:960px;height:220px;border-radius:12px;background-size:cover;background-position:center;background-repeat:no-repeat;box-shadow:0 4px 12px rgba(0,0,0,.6);overflow:hidden}
+    .card::after{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,.85) 100%)}
+    .info{position:absolute;bottom:1rem;left:1rem;z-index:1}
+    .info h3{font-size:1.6rem;margin-bottom:.35rem}
+    .info p{font-size:1.2rem;line-height:1.3;word-break:break-word}
+    .time{font-size:1.1rem;opacity:.9}
+    .copy-btn{position:absolute;top:1rem;right:1rem;z-index:2;padding:.4rem .8rem;font-size:.9rem;color:#111;background:#fff;border:none;border-radius:6px;cursor:pointer;transition:background .2s}
+    .copy-btn:hover{background:#e0e0e0}
+    @media(max-width:768px){.card{height:180px}.info h3{font-size:1.3rem}.info p,.time{font-size:1rem}.player-info{flex-direction:column;align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Player Server Activity Overview</h1>
+  </header>
+
+  <section class="player-info">
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=60" alt="Player Avatar" class="avatar" />
+    <div class="details">
+      <h2>PlayerName123</h2>
+      <p>ID: 987654 | Level: 50 | Rank: Colonel</p>
+    </div>
+    <div class="search-wrapper">
+      <input id="search" type="text" placeholder="Search server..." oninput="filterCards()" />
+    </div>
+  </section>
+
+  <div class="wrapper">
+    <!-- Card 1 -->
+    <div class="card" data-name="Server Alpha" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80')">
+      <button class="copy-btn" onclick="copyInfo(this)">Copy</button>
+      <div class="info">
+        <h3>Server Alpha</h3>
+        <p>https://example.com/servers/alpha</p>
+        <p class="time">2025-07-04 18:00</p>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="card" data-name="Server Bravo" style="background-image:url('https://images.unsplash.com/photo-1526401281623-0f7aa121c2e3?auto=format&fit=crop&w=800&q=80')">
+      <button class="copy-btn" onclick="copyInfo(this)">Copy</button>
+      <div class="info">
+        <h3>Server Bravo</h3>
+        <p>https://example.com/servers/bravo</p>
+        <p class="time">2025-07-04 17:45</p>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="card" data-name="Server Charlie" style="background-image:url('https://images.unsplash.com/photo-1583947582886-b522aaf45f52?auto=format&fit=crop&w=800&q=80')">
+      <button class="copy-btn" onclick="copyInfo(this)">Copy</button>
+      <div class="info">
+        <h3>Server Charlie</h3>
+        <p>https://example.com/servers/charlie</p>
+        <p class="time">2025-07-04 17:30</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyInfo(btn){
+      const card=btn.closest('.card');
+      const url=card.querySelector('.info p').textContent.trim();
+      navigator.clipboard.writeText(url).then(()=>{
+        btn.textContent='Copied!';
+        setTimeout(()=>btn.textContent='Copy',1500);
+      });
+    }
+    function filterCards(){
+      const q=document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('.card').forEach(c=>{
+        const name=c.dataset.name.toLowerCase();
+        c.style.display=name.includes(q)?'':'none';
+      });
+    }
+  </script>
+</body>
+</html>
