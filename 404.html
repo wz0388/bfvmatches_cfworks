@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+            position: relative;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 4rem 3rem;
+            max-width: 800px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .error-code {
+            font-size: 18rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0;
+            background: linear-gradient(to right, #ffffff, #e6e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            letter-spacing: -10px;
+            display: block;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .error-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 2rem 0 1.5rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+        }
+        
+        .error-message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .decoration {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-duration: 20s;
+        }
+        
+        .circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 70%;
+            left: 80%;
+            animation-duration: 15s;
+            animation-delay: 2s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            left: 75%;
+            animation-duration: 12s;
+            animation-delay: 1s;
+        }
+        
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            opacity: 0.1;
+            animation: rotate 30s infinite linear;
+        }
+        
+        .triangle:nth-child(4) {
+            border-width: 0 100px 173px 100px;
+            border-color: transparent transparent #fff transparent;
+            top: 15%;
+            left: 25%;
+        }
+        
+        .triangle:nth-child(5) {
+            border-width: 0 70px 121px 70px;
+            border-color: transparent transparent #fff transparent;
+            top: 60%;
+            left: 70%;
+            animation-duration: 25s;
+        }
+        
+        .square {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            animation: rotate 20s infinite linear reverse;
+        }
+        
+        .square:nth-child(6) {
+            width: 120px;
+            height: 120px;
+            top: 80%;
+            left: 10%;
+            animation-duration: 22s;
+        }
+        
+        .square:nth-child(7) {
+            width: 80px;
+            height: 80px;
+            top: 30%;
+            left: 85%;
+            animation-duration: 18s;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: rise 10s infinite linear;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-15px) translateX(10px);
+            }
+            50% {
+                transform: translateY(5px) translateX(-10px);
+            }
+            75% {
+                transform: translateY(-10px) translateX(-5px);
+            }
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 100%;
+                transform: translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        .copyright {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+            z-index: 5;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 12rem;
+                letter-spacing: -5px;
+            }
+            
+            .error-title {
+                font-size: 2.2rem;
+            }
+            
+            .error-message {
+                font-size: 1.2rem;
+            }
+            
+            .circle:nth-child(1) {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .circle:nth-child(2) {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 8rem;
+                letter-spacing: -3px;
+            }
+            
+            .error-title {
+                font-size: 1.8rem;
+            }
+            
+            .error-message {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 装饰元素 -->
+    <div class="decoration">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>
+    
+    <!-- 粒子效果 -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">页面未找到</h1>
+        <p class="error-message">
+            您正在寻找的页面可能已被移除、名称更改或暂时不可用。
+        </p>
+    </div>
+    
+    <div class="copyright">
+        &copy; 2025 wz0388.top
+    </div>
+    
+    <script>
+        // 创建粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小
+                const size = Math.random() * 8 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟和持续时间
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                
+                // 随机透明度
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 页面加载完成后执行
+        window.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // 添加鼠标移动视差效果
+            document.addEventListener('mousemove', function(e) {
+                const container = document.querySelector('.container');
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                container.style.transform = `translate(${xAxis}px, ${yAxis}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
